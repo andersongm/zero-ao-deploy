@@ -20,6 +20,6 @@ router.get('/',index);
 
 app.use(router.routes());
 
-const port = 3000;
+const port = process.env.PORT;//3000;
 app.listen(port)
     .on('listening', () => console.log(`Listening on Port ${port}`));
