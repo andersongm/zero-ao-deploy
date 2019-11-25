@@ -1,4 +1,5 @@
 const R = require('ramda')
+const bcrypt = require('bcrypt')
 
 const crypto = require('./crypto')
 const { User } = require('../models')
@@ -14,12 +15,18 @@ const getUsers = () =>
     .then(serializeUsers)
 
 const createUser = user =>
-  crypto
-    .hash(user.password)
-    .then(hash => User.create({
+  bcrypt.hash(user.password, 10).
+    then(hashed => User.create({
       ...user,
-      password: hash,
+      password: hashed
     }))
+
+// crypto
+//   .hash(user.password)
+//   .then(hash => User.create({
+//     ...user,
+//     password: hash,
+//   }))
 
 const findByEmail = email =>
   User.findOne({ where: { email } })
