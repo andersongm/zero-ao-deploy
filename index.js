@@ -15,8 +15,8 @@ const hello = ctx => {
 
 
 router.get('/',index);
-// router.get('/hello',hello);
-// router.get('/hello/:name',hello);
+router.get('/hello',hello);
+router.get('/hello/:name',hello);
 
 app.use(router.routes());
 
